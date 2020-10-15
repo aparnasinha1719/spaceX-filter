@@ -1,0 +1,31 @@
+.filter-selection-wrapper {
+  width: 150px;
+}
+.filter-selection-wrapper p {
+  text-align: center;
+}
+.btn-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.filter-btn {
+  border: 0;
+  background-color: lightgreen;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin: 8px;
+  cursor: pointer;
+  outline: none;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: #02bf02;
+}
+/* #btnnn {
+  background-color: red;
+} */
+/* button {
+  background-color: pink;
+} */

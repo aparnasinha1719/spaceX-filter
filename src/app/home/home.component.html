@@ -1,0 +1,54 @@
+<header><h2>SpaceX Launch Program</h2></header>
+<ng-container>
+  <section class="filter-selection-wrapper">
+    <h4>Filters</h4>
+    <nav>
+      <p>Launch Year</p>
+      <div class="btn-wrapper">
+        <button
+          id="btnnn"
+          *ngFor="let year of years"
+          class="filter-btn"
+          [class.active]="year"
+        >
+          {{ year }}
+        </button>
+      </div>
+      <p>Successful Launch</p>
+      <div class="btn-wrapper">
+        <button
+          id="btnnn"
+          *ngFor="let launchStatus of ['true', 'false']"
+          class="filter-btn"
+          [class.active]="launchStatus"
+        >
+          {{ launchStatus }}
+        </button>
+      </div>
+      <p>Successful Land</p>
+      <div class="btn-wrapper">
+        <button
+          id="btnnn"
+          *ngFor="let landStatus of ['true', 'false']"
+          class="filter-btn"
+          [class.active]="landStatus"
+        >
+          {{ landStatus }}
+        </button>
+      </div>
+    </nav>
+  </section>
+  <section>
+    <div>
+      <img src="" />
+      <h6></h6>
+      <div>
+        <h6>Mission Ids:</h6>
+        <ul>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</ng-container>
+<footer>Developed By: APARNA SINHA</footer>
