@@ -13,9 +13,11 @@ export class SpaceXService {
 
   getMissionsFromServer(year?, launchStatus?, landStatus?) {
     let query = '';
-    if (year) { query = `${query}&year=${year}`; }
-    if (launchStatus) { query = `${query}&launchStatus=${launchStatus}`; }
-    if (landStatus) { query = `${query}&landStatus=${landStatus}`; }
+    if (year) { query = `${query}&launch_year=${year}`; }
+    if (launchStatus) { query = `${query}&launch_success=${launchStatus}`; }
+    if (landStatus) { query = `${query}&land_success=${landStatus}`; }
+    console.log(query);
+
     return new Promise((resolve, reject) => {
       this.http.get(`${this.configService.baseUrl}${query}`).subscribe((response: any) => {
         if (response) {

@@ -8,6 +8,10 @@ import { SpaceXService } from '../services/spaceX/space-x.service';
 })
 export class HomeComponent implements OnInit {
   missions = [];
+  yearActive = '';
+  launchStatusActive = '';
+  landStatusActive = '';
+  currentStatus = 'Loading...';
   years = ['2006', '2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020'];
   constructor(
     private spaceXService: SpaceXService
@@ -17,12 +21,18 @@ export class HomeComponent implements OnInit {
     this.filterSpaceX();
   }
   filterSpaceX(year?, launchStatus?, landStatus?) {
-    this.spaceXService.getMissionsFromServer(year, launchStatus, landStatus).then((response: any) => {
-      console.log(response);
+    if (year) { this.yearActive = year; }
+    if (launchStatus) { this.launchStatusActive = launchStatus; }
+    if (landStatus) { this.landStatusActive = landStatus; }
 
-      if (response) {
-        this.missions = response;
+    this.spaceXService.getMissionsFromServer(this.yearActive, this.launchStatusActive, this.landStatusActive).then((response: any) => {
+      console.log(response);
+      this.missions = response;
+      if (response.length === 0) {
+        this.currentStatus = 'No Data Found';
+        return;
       }
+      // this.currentStatus = '';
     });
 
   }

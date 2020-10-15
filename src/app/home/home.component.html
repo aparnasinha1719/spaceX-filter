@@ -1,54 +1,75 @@
-<header><h2>SpaceX Launch Program</h2></header>
-<ng-container>
+<header><h3>SpaceX Launch Program</h3></header>
+<div class="content-container">
   <section class="filter-selection-wrapper">
-    <h4>Filters</h4>
+    <h5>Filters</h5>
     <nav>
       <p>Launch Year</p>
+      <hr />
       <div class="btn-wrapper">
         <button
-          id="btnnn"
-          *ngFor="let year of years"
           class="filter-btn"
-          [class.active]="year"
+          *ngFor="let year of years"
+          (click)="filterSpaceX(year)"
+          [class.active]="yearActive === year"
         >
           {{ year }}
         </button>
       </div>
       <p>Successful Launch</p>
+      <hr />
       <div class="btn-wrapper">
         <button
-          id="btnnn"
-          *ngFor="let launchStatus of ['true', 'false']"
           class="filter-btn"
-          [class.active]="launchStatus"
+          *ngFor="let launchStatus of ['true', 'false']"
+          (click)="filterSpaceX('', launchStatus)"
+          [class.active]="launchStatusActive === launchStatus"
         >
           {{ launchStatus }}
         </button>
       </div>
       <p>Successful Land</p>
+      <hr />
       <div class="btn-wrapper">
         <button
-          id="btnnn"
-          *ngFor="let landStatus of ['true', 'false']"
           class="filter-btn"
-          [class.active]="landStatus"
+          *ngFor="let landStatus of ['true', 'false']"
+          (click)="filterSpaceX('', '', landStatus)"
+          [class.active]="landStatusActive === landStatus"
         >
           {{ landStatus }}
         </button>
       </div>
     </nav>
   </section>
-  <section>
-    <div>
-      <img src="" />
-      <h6></h6>
-      <div>
-        <h6>Mission Ids:</h6>
+  <section class="card-section">
+    <!-- <div class="loader" *ngIf="!missions.length"></div> -->
+    <p class="loading-text" *ngIf="!missions.length">{{ currentStatus }}</p>
+    <div class="card" *ngFor="let mission of missions">
+      <!-- <img [src]="mission.links.mission_patch" /> -->
+      <img src="assets/images/falcon.png" />
+      <h6 class="mission-name">
+        {{ mission.mission_name }} #{{ mission.flight_number }}
+      </h6>
+      <div class="mission-details">
+        <h6>
+          Mission Ids: <span *ngIf="!mission.mission_id.length">N/A</span>
+        </h6>
         <ul>
-          <li></li>
+          <li *ngFor="let missionId of mission.mission_id">{{ missionId }}</li>
         </ul>
+        <div class="row">
+          <div class="col-6 heading">Launch Year:</div>
+          <div class="col-6 text">{{ mission.launch_year }}</div>
+          <div class="col-6 heading">Successful Launch:</div>
+          <div class="col-6 text">{{ mission.launch_success }}</div>
+          <!-- no where property is mentioned in object as shown in given task -->
+          <!-- <div class="col-6">Successful Landing:</div>
+          <div class="col-6">{{ mission.launch_landing }}</div> -->
+        </div>
       </div>
     </div>
   </section>
-</ng-container>
-<footer>Developed By: APARNA SINHA</footer>
+</div>
+<footer [class.footer]="!missions.length">
+  <span>Developed By:</span> Aparna Sinha
+</footer>
