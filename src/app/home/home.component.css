@@ -121,11 +121,7 @@ footer {
 footer span {
   font-weight: bold;
 }
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
+
 @media only screen and (max-width: 699px) {
   .filter-selection-wrapper,
   .card {
@@ -139,6 +135,11 @@ footer span {
   }
   .card-section {
     padding-left: 0px;
+  }
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
   }
 }
 @media only screen and (min-width: 700px) and (max-width: 1024px) {
